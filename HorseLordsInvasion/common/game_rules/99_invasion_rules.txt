@@ -1,0 +1,20 @@
+animal_invasions = {
+	name = "RULE_ANIMAL_INVASIONS"
+	group = "RULE_GROUP_RAILROADING"
+	option = {
+		name = historical
+		text = "RULE_OPTION_HISTORICAL"
+		desc = "RULE_ANIMAL_INVASIONS_HISTORICAL_DESC"
+	}
+	option = {
+		name = random
+		text = "RULE_OPTION_RANDOM"
+		desc = "RULE_ANIMAL_INVASIONS_RANDOM_DESC"
+	}
+	option = {
+		name = off
+		achievements = no
+		text = "RULE_OPTION_OFF"
+		desc = "RULE_ANIMAL_INVASIONS_OFF_DESC"
+	}
+}

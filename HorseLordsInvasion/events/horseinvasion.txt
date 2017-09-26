@@ -1,0 +1,5178 @@
+################################################
+##Sleipnir Invasion Event Chain ID 87520-87526##	#Change religion to something similar of the region. Impliment ancient religions?
+################################################
+
+# Sleipnir spawns
+character_event = {
+	id = 87520
+	desc = EVTDESC87520
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	only_playable = yes
+	culture = horse
+	
+	trigger = {
+		NOT = {
+			has_game_rule = {
+				name = animal_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = historical
+				}
+				year = 1080
+				NOT = { year = 980 }
+			}
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = random
+				}
+				year = 809
+				NOT = { year = 1200 }
+			}
+		}
+		
+		higher_tier_than = count
+		
+		NOT = { has_global_flag = sleipnir_spawned }
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+	}
+	
+	immediate = {
+		create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Sleipnir
+			culture = horse
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 12
+				diplomacy = 6
+				stewardship = 8
+				intrigue = 6
+				learning = 0
+			}
+			health = 7.5
+			fertility = 1.80
+			trait = brilliant_strategist
+			trait = wroth
+			trait = cruel
+			trait = proud
+			trait = paranoid
+			trait = ambitious
+			trait = adventurer
+			trait = cannibal_trait
+		}
+		new_character = {
+			character_event = {
+				id = 87521
+				days = 2000
+				random = 600
+			}
+			set_character_flag = sleipnir_himself
+		}
+	}
+	
+	option = { # A most capable young man
+		name = EVTOPTA87520
+		
+		trigger = {
+			NOT = { 
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = sleipnir_spawned
+		set_global_flag = sleipnir_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Sleipnir
+			culture = horse
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 12
+				diplomacy = 6
+				stewardship = 8
+				intrigue = 6
+				learning = 0
+			}
+			health = 7.5
+			fertility = 1.80
+			trait = brilliant_strategist
+			trait = wroth
+			trait = cruel
+			trait = proud
+			trait = paranoid
+			trait = ambitious
+			trait = adventurer
+			}
+		}
+	}
+	
+	option = { # A most capable young man
+		name = EVTOPTB87520
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = sleipnir_spawned
+		set_global_flag = sleipnir_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Sleipnir
+			culture = horse
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 12
+				diplomacy = 6
+				stewardship = 8
+				intrigue = 6
+				learning = 0
+			}
+			health = 7.5
+			fertility = 1.80
+			trait = brilliant_strategist
+			trait = wroth
+			trait = cruel
+			trait = proud
+			trait = paranoid
+			trait = ambitious
+			trait = adventurer
+			}
+		}
+	}
+}
+
+# Sleipnir and his men consider starting an adventure
+character_event = {
+	id = 87521
+	desc = EVTDESC87521
+	
+	picture = GFX_evt_mongols
+	border =  GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes #Even Sleipnir in a bathtub can take over the world!
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+		
+		OR = {
+			
+			127 = { # Lorraine
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			262 = { # Lubeck
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			430 = { # Lubusz
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			452 = { # Pecs
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+	}
+	
+	option = { # Lorraine it is!
+		name = EVTOPTA87521
+		trigger = {
+			127 = { # Lorraine
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		127 = {
+			province_event = {
+				id = 87522
+				days = 2
+			}
+		}
+	}
+	option = { # Lubeck it is!
+		name = EVTOPTB87521
+		trigger = {
+			262 = { # Lubeck
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2000
+		}
+		
+		262 = {
+			province_event = {
+				id = 87522
+				days = 2
+			}
+		}
+	}
+	option = { # Lubusz it is!
+		name = EVTOPTC87521
+		trigger = {
+			430 = { # Lubusz
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2000
+		}
+		
+		430 = {
+			province_event = {
+				id = 87522
+				days = 2
+			}
+		}
+	}
+	option = { # Pecs it is!
+		name = EVTOPTD87521
+		trigger = {
+			452 = { # Pecs
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		452 = {
+			province_event = {
+				id = 87522
+				days = 2
+			}
+		}
+	}
+}
+
+# Ping the target province
+province_event = {
+	id = 87522
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = yes
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87524
+				}
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = no
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87523
+				}
+			}
+		}
+	}
+}
+
+# The landless Sleipnir and his men start an adventure #May have issues, look into
+character_event = {
+	id = 87523
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = { #Tell Liege of Sleipnir's Adventure
+			character_event = {
+				id = 87525
+				days = 1
+			}
+		}
+		
+		liege = { #Unsure of, may have issues?
+			capital_scope = {
+				FROM = {
+					owner = {
+						top_liege = {
+							ROOT = {
+								set_defacto_liege = ROOT
+								create_title = {
+									tier = DUKE
+									landless = yes
+									temporary = yes
+									culture = ROOT
+									name = "CLAIMANT_ADVENTURE"
+									holder = ROOT
+								}
+								
+								set_character_flag = horse_duchy_adventurer
+							
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								war = {
+									target = PREV
+									casus_belli = horse_duchy_adventure
+									thirdparty_title = PREVPREVPREV
+									tier = DUKE
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if = { #Unsure of, may have issues?
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87523: Sleipnir starts his first war as a landless character!"
+	}
+}
+
+# The landed Sleipnir and his men start an adventure
+character_event = {
+	id = 87524
+	desc = EVTDESC87524
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = {
+			character_event = {
+				id = 87525
+				days = 1
+			}
+		}
+		
+		FROM = {
+			owner = {
+				top_liege = {
+					ROOT = {
+						capital_scope = {
+							ROOT = {
+								set_character_flag = horse_duchy_adventurer
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+							}
+						}
+						
+						war = {
+							target = PREV
+							casus_belli = horse_duchy_adventure
+							thirdparty_title = PREVPREVPREV
+							tier = DUKE
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87524: Sleipnir starts his first war as a landed character!"
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87524
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+	option = { #possessed/lunatics
+		name = EVTOPTB87524
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+}
+
+# Notify Sleipnir's old liege
+character_event = {
+	id = 87525
+	desc = EVTDESC87525
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { is_ruler = yes } # The DoW worked and the adventurer has a temporary title
+
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87525
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #possessed/lunatics
+		name = EVTOPTB87525
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+# Sleipnir is successful!
+# Fired from the horse_duchy_adventure CB
+narrative_event = {
+	id = 87526
+	title = EVTNAME87526
+	desc = EVTDESC87526
+	picture = GFX_evt_mongols
+	border = GFX_event_narrative_frame_war
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					independent = yes
+					liege = {
+						ai = yes
+					}
+				}
+			}
+			set_defacto_liege = ROOT
+			activate_title = { title = e_sleipnir_horde status = yes }
+			e_sleipnir_horde = {
+				grant_title = ROOT
+			}
+			if = {
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				population = 60000
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}			
+			
+
+
+		}
+		
+		prestige = 2000
+		wealth = 5000
+		
+		capital_scope = { #Where Units Spawn
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+
+			}
+		}
+		
+		log = "87526: Sleipnir wins his first war!"
+	}
+	
+	option = { #Sleipnir Only
+		name = EVTOPTA87526
+		trigger = {
+			has_character_flag = sleipnir_himself
+		}
+	}
+	option = { #Horse Cultured Only
+		name = EVTOPTB87526
+		trigger = {
+			NOT = { has_character_flag = sleipnir_himself }
+			culture = horse
+		}
+	}	
+	option = { #Anyone Else
+		name = EVTOPTC87526
+		trigger = {
+			NOT = { has_character_flag = sleipnir_himself }
+			NOT = {
+				culture = horse
+			}
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #Anyone Else
+		name = EVTOPTD87526
+		trigger = {
+			NOT = { has_character_flag = sleipnir_himself }
+			NOT = { culture = horse	}
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+################################################
+##Hee-Haw Invasion Event Chain ID 87527-87533###	#Change religion to something similar of the region. Impliment ancient religions?
+################################################
+
+# Hee-Haw spawns
+character_event = {
+	id = 87527
+	desc = EVTDESC87527
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	only_playable = yes
+	culture = donkey_culture
+	
+	trigger = {
+		NOT = {
+			has_game_rule = {
+				name = animal_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = historical
+				}
+				year = 1130
+				NOT = { year = 980 }
+			}
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = random
+				}
+				year = 809
+				NOT = { year = 1200 }
+			}
+		}
+		
+		higher_tier_than = count
+		
+		NOT = { has_global_flag = hee_haw_spawned }
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+	}
+	
+	immediate = {
+		create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Hee-Haw
+			culture = donkey_culture
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 18
+				diplomacy = 0
+				stewardship = 4
+				intrigue = 12
+				learning = 0
+			}
+			health = 8.00
+			fertility = 2.20
+			trait = elusive_shadow
+			trait = dull
+			trait = stubborn
+			trait = gardener
+			trait = seducer
+			trait = bastard
+			trait = strong
+			trait = arbitrary
+			trait = adventurer
+			trait = lustful
+		}
+		new_character = {
+			character_event = {
+				id = 87528
+				days = 2000
+				random = 600
+			}
+			set_character_flag = hee_haw_himself
+		}
+	}
+	
+	option = { # For Normal People
+		name = EVTOPTA87527
+		
+		trigger = {
+			NOT = { 
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = hee_haw_spawned
+		set_global_flag = hee_haw_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Hee-Haw
+				culture = donkey_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 18
+					diplomacy = 0
+					stewardship = 4
+					intrigue = 12
+					learning = 0
+				}
+				health = 8.00
+				fertility = 2.20
+				trait = elusive_shadow
+				trait = dull
+				trait = stubborn
+				trait = gardener
+				trait = seducer
+				trait = bastard
+				trait = strong
+				trait = arbitrary
+				trait = adventurer
+				trait = lustful
+			}
+		}
+	}
+	
+	option = { # For Lunatics
+		name = EVTOPTB87527
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = hee_haw_spawned
+		set_global_flag = hee_haw_spawned_by_event
+		
+		tooltip = {
+		create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Hee-Haw
+			culture = donkey_culture
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 18
+				diplomacy = 0
+				stewardship = 4
+				intrigue = 12
+				learning = 0
+			}
+			health = 8.00
+			fertility = 2.20
+			trait = elusive_shadow
+			trait = dull
+			trait = stubborn
+			trait = gardener
+			trait = seducer
+			trait = bastard
+			trait = strong
+			trait = arbitrary
+			trait = adventurer
+			trait = lustful
+		}
+		}
+	}
+}
+
+# Hee-Haw and his men consider starting an adventure
+character_event = {
+	id = 87528
+	desc = EVTDESC87528
+	
+	picture = GFX_evt_mongols
+	border =  GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes #Even Hee-Haw in a bathtub can take over the world!
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+		
+		OR = {
+			
+			199 = { # Burgos
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			204 = { # Barcelona
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			160 = { # Lisboa
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			182 = { # Sevilla
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+	}
+	
+	option = { # Burgos it is!
+		name = EVTOPTA87528
+		trigger = {
+			199 = { # Burgos
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		199 = {
+			province_event = {
+				id = 87529
+				days = 2
+			}
+		}
+	}
+	option = { # Barcelona it is!
+		name = EVTOPTB87528
+		trigger = {
+			204 = { # Barcelona
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		204 = {
+			province_event = {
+				id = 87529
+				days = 2
+			}
+		}
+	}
+	option = { # Lisboa it is!
+		name = EVTOPTC87528
+		trigger = {
+			160 = { # Lisboa
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2000
+		}
+		
+		160 = {
+			province_event = {
+				id = 87529
+				days = 2
+			}
+		}
+	}
+	option = { # Sevilla it is!
+		name = EVTOPTD87528
+		trigger = {
+			182 = { # Sevilla
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 5000
+		}
+		
+		182 = {
+			province_event = {
+				id = 87529
+				days = 2
+			}
+		}
+	}
+}
+
+# Ping the target province
+province_event = {
+	id = 87529
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = yes
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87531
+				}
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = no
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87530
+				}
+			}
+		}
+	}
+}
+
+# The landless Hee-Haw and his men start an adventure
+character_event = {
+	id = 87530
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = { #Tell Liege of Hee-Haw's Adventure
+			character_event = {
+				id = 875232
+				days = 1
+			}
+		}
+		
+		liege = { 
+			capital_scope = {
+				FROM = {
+					owner = {
+						top_liege = {
+							ROOT = {
+								set_defacto_liege = ROOT
+								create_title = {
+									tier = DUKE
+									landless = yes
+									temporary = yes
+									culture = ROOT
+									name = "CLAIMANT_ADVENTURE"
+									holder = ROOT
+								}
+								
+								set_character_flag = horse_duchy_adventurer
+							
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								war = {
+									target = PREV
+									casus_belli = horse_duchy_adventure
+									thirdparty_title = PREVPREVPREV
+									tier = DUKE
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if = { #Unsure of, may have issues?
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87530: Hee-Haw starts his first war as a landless character!"
+	}
+}
+
+# The landed Hee-Haw and his men start an adventure
+character_event = {
+	id = 87531
+	desc = EVTDESC87531
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = {
+			character_event = {
+				id = 87532
+				days = 1
+			}
+		}
+		
+		FROM = {
+			owner = {
+				top_liege = {
+					ROOT = {
+						capital_scope = {
+							ROOT = {
+								set_character_flag = horse_duchy_adventurer
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+							}
+						}
+						
+						war = {
+							target = PREV
+							casus_belli = horse_duchy_adventure
+							thirdparty_title = PREVPREVPREV
+							tier = DUKE
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87531: Hee-Haw starts his first war as a landed character!"
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87531
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+	option = { #possessed/lunatics
+		name = EVTOPTB87531
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+}
+
+# Notify Hee-Haw's old liege
+character_event = {
+	id = 87532
+	desc = EVTDESC87532
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { is_ruler = yes } # The DoW worked and the adventurer has a temporary title
+
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87532
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #possessed/lunatics
+		name = EVTOPTB87532
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+# Hee-Haw is successful!
+# Fired from the horse_duchy_adventure CB
+narrative_event = {
+	id = 87533
+	title = EVTNAME87533
+	desc = EVTDESC87533
+	picture = GFX_evt_mongols
+	border = GFX_event_narrative_frame_war
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					independent = yes
+					liege = {
+						ai = yes
+					}
+				}
+			}
+			set_defacto_liege = ROOT
+			activate_title = { title = e_hee_haw_horde status = yes }
+			e_hee_haw_horde = {
+				grant_title = ROOT
+			}
+			if = { #Nomadic if has Horse Lords
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				population = 60000
+			}
+			if = { #Tribal if no Horse Lords
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}			
+			
+
+
+		}
+		
+		prestige = 2000
+		wealth = 5000
+		
+		capital_scope = { #Where Units Spawn
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 4250 4250 }
+						horse_archers = { 1500 1500 }
+						knights = { 500 500 }
+					}
+				}
+
+			}
+		}
+		
+		log = "87526: Sleipnir wins his first war!"
+	}
+	
+	option = { #Hee-Haw only
+		name = EVTOPTA87533
+		trigger = {
+			has_character_flag = hee_haw_himself
+		}
+	}
+	option = { #Donkey Cultured Only
+		name = EVTOPTB87533
+		trigger = {
+			NOT = { has_character_flag = hee_haw_himself }
+			culture = donkey_culture
+		}
+	}	
+	option = { #Anyone Else
+		name = EVTOPTC87533
+		trigger = {
+			NOT = { has_character_flag = hee_haw_himself }
+			NOT = {
+				culture = donkey_culture
+			}
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #Lunatics/Possessed only
+		name = EVTOPTD87533
+		trigger = {
+			NOT = { has_character_flag = hee_haw_himself }
+			NOT = { culture = donkey_culture }
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+################################################
+###Buster Invasion Event Chain ID 87534-87540###	#Change religion to something similar of the region. Impliment ancient religions?
+################################################
+
+# Buster spawns
+character_event = {
+	id = 87534
+	desc = EVTDESC87534
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	only_playable = yes
+	culture = dog_culture
+	
+	trigger = {
+		NOT = {
+			has_game_rule = {
+				name = animal_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = historical
+				}
+				year = 1250
+				NOT = { year = 980 }
+			}
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = random
+				}
+				year = 809
+				NOT = { year = 1200 }
+			}
+		}
+		
+		higher_tier_than = count
+		
+		NOT = { has_global_flag = hee_haw_spawned }
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+	}
+	
+	immediate = { #Dynasty still broken
+		create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Buster
+			culture = dog_culture
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 12
+				diplomacy = 12
+				stewardship = 8
+				intrigue = 4
+				learning = 2
+			}
+			health = 7.00
+			fertility = 1.5
+			trait = grey_eminence
+			trait = fair
+			trait = quick
+			trait = diligent
+			trait = patient
+			trait = gregarious
+			trait = trusting
+			trait = adventurer
+		}
+		new_character = {
+			character_event = {
+				id = 87535
+				days = 2000
+				random = 600
+			}
+			set_character_flag = buster_himself
+		}
+	}
+	
+	option = { # Non Insane people event
+		name = EVTOPTA87534
+		
+		trigger = {
+			NOT = { 
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = buster_spawned
+		set_global_flag = buster_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Buster
+				culture = dog_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 12
+					diplomacy = 12
+					stewardship = 8
+					intrigue = 4
+					learning = 2
+				}
+				health = 7.00
+				fertility = 1.5
+				trait = grey_eminence
+				trait = fair
+				trait = quick
+				trait = diligent
+				trait = patient
+				trait = gregarious
+				trait = trusting
+				trait = adventurer
+			}
+		}
+	}
+	
+	option = { # Lunatic/Possessed Response
+		name = EVTOPTB87534
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = buster_spawned
+		set_global_flag = buster_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Buster
+				culture = dog_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 12
+					diplomacy = 12
+					stewardship = 8
+					intrigue = 4
+					learning = 2
+				}
+				health = 7.00
+				fertility = 1.5
+				trait = grey_eminence
+				trait = fair
+				trait = quick
+				trait = diligent
+				trait = patient
+				trait = gregarious
+				trait = trusting
+				trait = adventurer
+			}
+		}
+	}
+}
+
+# Buster and his men consider starting an adventure
+character_event = {
+	id = 87535
+	desc = EVTDESC87535
+	
+	picture = GFX_evt_mongols
+	border =  GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes #Even Buster in a bathtub can take over the world!
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+		
+		OR = {
+			
+			32 = { # Middlesex AKA London
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			52 = { # Northumberland
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			112 = { # Paris
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			74 = { # Guines AKA Flanders
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+	}
+	
+	option = { # Middlesex it is!
+		name = EVTOPTA87535
+		trigger = {
+			32 = { # Middlesex AKA London
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2000
+		}
+		
+		32 = {
+			province_event = {
+				id = 87536
+				days = 2
+			}
+		}
+	}
+	option = { # Northumberland it is!
+		name = EVTOPTB87535
+		trigger = {
+			52 = { # Northumberland
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 3000
+		}
+		
+		52 = {
+			province_event = {
+				id = 87536
+				days = 2
+			}
+		}
+	}
+	option = { # Paris it is!
+		name = EVTOPTC87535
+		trigger = {
+			112 = { # Paris
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2000
+		}
+		
+		112 = {
+			province_event = {
+				id = 87536
+				days = 2
+			}
+		}
+	}
+	option = { # Guines it is!
+		name = EVTOPTD87535
+		trigger = {
+			74 = { # Guines AKA Flanders
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		74 = {
+			province_event = {
+				id = 87536
+				days = 2
+			}
+		}
+	}
+}
+
+# Ping the target province
+province_event = {
+	id = 87536
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = yes
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87538
+				}
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = no
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87537
+				}
+			}
+		}
+	}
+}
+
+# The landless Buster and his men start an adventure
+character_event = {
+	id = 87537
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = { #Tell Liege of Buster's Adventure
+			character_event = {
+				id = 875239
+				days = 1
+			}
+		}
+		
+		liege = { #Give Title and Units
+			capital_scope = {
+				FROM = {
+					owner = {
+						top_liege = {
+							ROOT = {
+								set_defacto_liege = ROOT
+								create_title = {
+									tier = DUKE
+									landless = yes
+									temporary = yes
+									culture = ROOT
+									name = "CLAIMANT_ADVENTURE"
+									holder = ROOT
+								}
+								
+								set_character_flag = horse_duchy_adventurer
+							
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								war = {
+									target = PREV
+									casus_belli = horse_duchy_adventure
+									thirdparty_title = PREVPREVPREV
+									tier = DUKE
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87537: Buster starts his first war as a landless character!"
+	}
+}
+
+# The landed Buster and his men start an adventure
+character_event = {
+	id = 87538
+	desc = EVTDESC87538
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = {
+			character_event = {
+				id = 87539
+				days = 1
+			}
+		}
+		
+		FROM = {
+			owner = {
+				top_liege = {
+					ROOT = {
+						capital_scope = {
+							ROOT = {
+								set_character_flag = horse_duchy_adventurer
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+							}
+						}
+						
+						war = {
+							target = PREV
+							casus_belli = horse_duchy_adventure
+							thirdparty_title = PREVPREVPREV
+							tier = DUKE
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87538: Buster starts his first war as a landed character!"
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87538
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+	option = { #possessed/lunatics
+		name = EVTOPTB87538
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+}
+
+# Notify Buster's old liege
+character_event = {
+	id = 87539
+	desc = EVTDESC87539
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { is_ruler = yes } # The DoW worked and the adventurer has a temporary title
+
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87539
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #possessed/lunatics
+		name = EVTOPTB87539
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+# Buster is successful!
+# Fired from the horse_duchy_adventure CB
+narrative_event = {
+	id = 87540
+	title = EVTNAME87540
+	desc = EVTDESC87540
+	picture = GFX_evt_mongols
+	border = GFX_event_narrative_frame_war
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	immediate = {
+		if = { #Give Titles
+			limit = {
+				OR = {
+					independent = yes
+					liege = {
+						ai = yes
+					}
+				}
+			}
+			set_defacto_liege = ROOT
+			activate_title = { title = e_buster_horde status = yes }
+			e_buster_horde = {
+				grant_title = ROOT
+			}
+			if = { #Nomadic if has Horse Lords
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				population = 60000
+			}
+			if = { #Tribal if no Horse Lords
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}			
+			
+
+
+		}
+		
+		prestige = 2000
+		wealth = 5000
+		
+		capital_scope = { #Where Units Spawn
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}			
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}			
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+
+			}
+		}
+		
+		log = "87540: Buster wins his first war!"
+	}
+	
+	option = { #Buster only
+		name = EVTOPTA87540
+		trigger = {
+			has_character_flag = buster_himself
+		}
+	}
+	option = { #Dog Cultured Only
+		name = EVTOPTB87540
+		trigger = {
+			NOT = { has_character_flag = buster_himself }
+			culture = dog_culture
+		}
+	}	
+	option = { #Anyone Else
+		name = EVTOPTC87540
+		trigger = {
+			NOT = { has_character_flag = buster_himself }
+			NOT = {
+				culture = dog_culture
+			}
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #Lunatics/Possessed only
+		name = EVTOPTD87540
+		trigger = {
+			NOT = { has_character_flag = buster_himself }
+			NOT = { culture = dog_culture }
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+################################################
+###Fluffy Invasion Event Chain ID 87541-87547### #Change religion to something similar of the region. Impliment ancient religions?
+################################################
+
+# Fluffy spawns
+character_event = {
+	id = 87541
+	desc = EVTDESC87541
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	only_playable = yes
+	culture = cat_culture
+	
+	trigger = {
+		NOT = {
+			has_game_rule = {
+				name = animal_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = historical
+				}
+				year = 870
+				NOT = { year = 800 }
+			}
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = random
+				}
+				year = 800
+				NOT = { year = 1300 }
+			}
+		}
+		
+		higher_tier_than = count
+		
+		NOT = { has_global_flag = fluffy_spawned }
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+	}
+	
+	immediate = { #Dynasty still broken
+		create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Fluffy
+			culture = cat_culture
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 4
+				diplomacy = 8
+				stewardship = 0
+				intrigue = 16
+				learning = 2
+			}
+			health = 7.00
+			fertility = 2.00
+			trait = elusive_shadow
+			trait = quick
+			trait = envious
+			trait = proud
+			trait = deceitful
+			trait = cruel
+			trait = shrewd
+			trait = adventurer
+		}
+		new_character = {
+			character_event = {
+				id = 87542
+				days = 2000
+				random = 600
+			}
+			set_character_flag = fluffy_himself
+		}
+	}
+	
+	option = { # Non Insane people event
+		name = EVTOPTA87541
+		
+		trigger = {
+			NOT = { 
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = fluffy_spawned
+		set_global_flag = fluffy_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Fluffy
+				culture = cat_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 4
+					diplomacy = 8
+					stewardship = 0
+					intrigue = 16
+					learning = 2
+				}
+				health = 7.00
+				fertility = 2.00
+				trait = elusive_shadow
+				trait = quick
+				trait = envious
+				trait = proud
+				trait = deceitful
+				trait = cruel
+				trait = shrewd
+				trait = adventurer
+			}
+		}
+	}
+	
+	option = { # Lunatic/Possessed Response
+		name = EVTOPTB87541
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = fluffy_spawned
+		set_global_flag = fluffy_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Fluffy
+				culture = cat_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 4
+					diplomacy = 8
+					stewardship = 0
+					intrigue = 16
+					learning = 2
+				}
+				health = 7.00
+				fertility = 2.00
+				trait = elusive_shadow
+				trait = quick
+				trait = envious
+				trait = proud
+				trait = deceitful
+				trait = cruel
+				trait = shrewd
+				trait = adventurer
+			}
+		}
+	}
+}
+
+# Fluffy and his men consider starting an adventure
+character_event = {
+	id = 87542
+	desc = EVTDESC87542
+	
+	picture = GFX_evt_mongols
+	border =  GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes #Even Buster in a bathtub can take over the world!
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+		
+		OR = {
+			
+			796 = { # Cairo
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			802 = { # Alexandria
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			794 = { # Aswan - Lower Egypt
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			781 = { # Darunm - Around Jerusalem
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+	}
+	
+	option = { # Cairo it is!
+		name = EVTOPTA87542
+		trigger = {
+			796 = { # Cairo
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 3000
+		}
+		
+		796 = {
+			province_event = {
+				id = 87543
+				days = 2
+			}
+		}
+	}
+	option = { # Alexandria it is!
+		name = EVTOPTB87542
+		trigger = {
+			802 = { # Alexandria
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 3000
+		}
+		
+		802 = {
+			province_event = {
+				id = 87543
+				days = 2
+			}
+		}
+	}
+	option = { # Aswan - Lower Egypt it is!
+		name = EVTOPTC87542
+		trigger = {
+			794 = { # Aswan - Lower Egypt
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		794 = {
+			province_event = {
+				id = 87543
+				days = 2
+			}
+		}
+	}
+	option = { # Darunm - Around Jerusalem it is!
+		name = EVTOPTD87542
+		trigger = {
+			781 = { # Darunm - Around Jerusalem
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 1000
+		}
+		
+		781 = {
+			province_event = {
+				id = 87543
+				days = 2
+			}
+		}
+	}
+}
+
+# Ping the target province
+province_event = {
+	id = 87543
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = yes
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87545
+				}
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = no
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87544
+				}
+			}
+		}
+	}
+}
+
+# The landless Fluffy and his men start an adventure
+character_event = {
+	id = 87544
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = { #Tell Liege of Buster's Adventure
+			character_event = {
+				id = 875246
+				days = 1
+			}
+		}
+		
+		liege = { #Give Title and Units
+			capital_scope = {
+				FROM = {
+					owner = {
+						top_liege = {
+							ROOT = {
+								set_defacto_liege = ROOT
+								create_title = {
+									tier = DUKE
+									landless = yes
+									temporary = yes
+									culture = ROOT
+									name = "CLAIMANT_ADVENTURE"
+									holder = ROOT
+								}
+								
+								set_character_flag = horse_duchy_adventurer
+							
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								war = {
+									target = PREV
+									casus_belli = horse_duchy_adventure
+									thirdparty_title = PREVPREVPREV
+									tier = DUKE
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87544: Fluffy starts his first war as a landless character!"
+	}
+}
+
+# The landed Fluffy and his men start an adventure
+character_event = {
+	id = 87545
+	desc = EVTDESC87545
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = {
+			character_event = {
+				id = 87546
+				days = 1
+			}
+		}
+		
+		FROM = {
+			owner = {
+				top_liege = {
+					ROOT = {
+						capital_scope = {
+							ROOT = {
+								set_character_flag = horse_duchy_adventurer
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+							}
+						}
+						
+						war = {
+							target = PREV
+							casus_belli = horse_duchy_adventure
+							thirdparty_title = PREVPREVPREV
+							tier = DUKE
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87545: Fluffy starts his first war as a landed character!"
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87545
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+	option = { #possessed/lunatics
+		name = EVTOPTB87545
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+}
+
+# Notify Fluffy's old liege
+character_event = {
+	id = 87546
+	desc = EVTDESC87546
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { is_ruler = yes } # The DoW worked and the adventurer has a temporary title
+
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87546
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #possessed/lunatics
+		name = EVTOPTB87546
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+# Fluffy is successful!
+# Fired from the horse_duchy_adventure CB
+narrative_event = {
+	id = 87547
+	title = EVTNAME87547
+	desc = EVTDESC87547
+	picture = GFX_evt_mongols
+	border = GFX_event_narrative_frame_war
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	immediate = {
+		if = { #Give Titles
+			limit = {
+				OR = {
+					independent = yes
+					liege = {
+						ai = yes
+					}
+				}
+			}
+			set_defacto_liege = ROOT
+			activate_title = { title = e_fluffy_horde status = yes }
+			e_fluffy_horde = {
+				grant_title = ROOT
+			}
+			if = { #Nomadic if has Horse Lords
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				population = 60000
+			}
+			if = { #Tribal if no Horse Lords
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}			
+			
+
+
+		}
+		
+		prestige = 2000
+		wealth = 5000
+		
+		capital_scope = { #Where Units Spawn
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}			
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}			
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+
+			}
+		}
+		
+		log = "87547: FLuffy wins his first war!"
+	}
+	
+	option = { #Fluffy only
+		name = EVTOPTA87547
+		trigger = {
+			has_character_flag = fluffy_himself
+		}
+	}
+	option = { #Cat Cultured Only
+		name = EVTOPTB87547
+		trigger = {
+			NOT = { has_character_flag = fluffy_himself }
+			culture = cat_culture
+		}
+	}	
+	option = { #Anyone Else
+		name = EVTOPTC87547
+		trigger = {
+			NOT = { has_character_flag = fluffy_himself }
+			NOT = {
+				culture = cat_culture
+			}
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #Lunatics/Possessed only
+		name = EVTOPTD87547
+		trigger = {
+			NOT = { has_character_flag = fluffy_himself }
+			NOT = { culture = cat_culture }
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+################################################
+###Fluffy Invasion Event Chain ID 87548-87554### #Change religion to something similar of the region. Impliment ancient religions?
+################################################ #Duplicate for India possibly?
+
+# Fluffy spawns
+character_event = {
+	id = 87548
+	desc = EVTDESC87548
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	only_playable = yes
+	culture = monkey_culture
+	
+	trigger = {
+		NOT = {
+			has_game_rule = {
+				name = animal_invasions
+				value = off
+			}
+		}
+		OR = {
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = historical
+				}
+				year = 1150
+				NOT = { year = 800 }
+			}
+			AND = {
+				has_game_rule = {
+					name = animal_invasions
+					value = random
+				}
+				year = 800
+				NOT = { year = 1300 }
+			}
+		}
+		
+		higher_tier_than = count
+		
+		NOT = { has_global_flag = fluffy_spawned }
+	}
+	
+	mean_time_to_happen = {
+		months = 24
+	}
+	
+	immediate = { #Dynasty still broken
+		create_random_soldier = {
+			random_traits = no
+			dynasty = 485246 # Butter-Licker
+			name = Fluffy
+			culture = monkey_culture
+			religion = ROOT
+			age = 16
+			attributes = {
+				martial = 4
+				diplomacy = 8
+				stewardship = 0
+				intrigue = 16
+				learning = 2
+			}
+			health = 7.00
+			fertility = 2.00
+			trait = elusive_shadow
+			trait = quick
+			trait = envious
+			trait = proud
+			trait = deceitful
+			trait = cruel
+			trait = shrewd
+			trait = adventurer
+		}
+		new_character = {
+			character_event = {
+				id = 87549
+				days = 2000
+				random = 600
+			}
+			set_character_flag = fluffy_himself
+		}
+	}
+	
+	option = { # Non Insane people event
+		name = EVTOPTA87548
+		
+		trigger = {
+			NOT = { 
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = fluffy_spawned
+		set_global_flag = fluffy_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Fluffy
+				culture = monkey_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 4
+					diplomacy = 8
+					stewardship = 0
+					intrigue = 16
+					learning = 2
+				}
+				health = 7.00
+				fertility = 2.00
+				trait = elusive_shadow
+				trait = quick
+				trait = envious
+				trait = proud
+				trait = deceitful
+				trait = cruel
+				trait = shrewd
+				trait = adventurer
+			}
+		}
+	}
+	
+	option = { # Lunatic/Possessed Response
+		name = EVTOPTB87548
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+		set_global_flag = fluffy_spawned
+		set_global_flag = fluffy_spawned_by_event
+		
+		tooltip = {
+			create_random_soldier = {
+				random_traits = no
+				dynasty = 485246 # Butter-Licker
+				name = Fluffy
+				culture = monkey_culture
+				religion = ROOT
+				age = 16
+				attributes = {
+					martial = 4
+					diplomacy = 8
+					stewardship = 0
+					intrigue = 16
+					learning = 2
+				}
+				health = 7.00
+				fertility = 2.00
+				trait = elusive_shadow
+				trait = quick
+				trait = envious
+				trait = proud
+				trait = deceitful
+				trait = cruel
+				trait = shrewd
+				trait = adventurer
+			}
+		}
+	}
+}
+
+# Fluffy and his men consider starting an adventure
+character_event = {
+	id = 87549
+	desc = EVTDESC87549
+	
+	picture = GFX_evt_mongols
+	border =  GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes #Even Buster in a bathtub can take over the world!
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+		
+		OR = {
+			
+			913 = { # Ghana
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			840 = { # Fes
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			916 = { # Taghaza - Sahara between Morocco and West Africa
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+			921 = { # Idjil - Around Jerusalem
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+	}
+	
+	option = { # Ghana it is!
+		name = EVTOPTA87549
+		trigger = {
+			913 = { # Ghana
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2000
+		}
+		
+		913 = {
+			province_event = {
+				id = 87550
+				days = 2
+			}
+		}
+	}
+	option = { # Fes it is!
+		name = EVTOPTB87549
+		trigger = {
+			840 = { # Fes
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2500
+		}
+		
+		840 = {
+			province_event = {
+				id = 87550
+				days = 2
+			}
+		}
+	}
+	option = { # Taghaza - Sahara between Morocco and West Africa it is!
+		name = EVTOPTC87549
+		trigger = {
+			916 = { # Taghaza - Sahara between Morocco and West Africa
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 500
+		}
+		
+		916 = {
+			province_event = {
+				id = 87550
+				days = 2
+			}
+		}
+	}
+	option = { # Idjil it is!
+		name = EVTOPTD87549
+		trigger = {
+			921 = { # Idjil
+				owner = {
+					NOT = { same_realm = ROOT }
+				}
+			}
+		}
+		
+		ai_chance = {
+			factor = 2500
+		}
+		
+		921 = {
+			province_event = {
+				id = 87550
+				days = 2
+			}
+		}
+	}
+}
+
+# Ping the target province
+province_event = {
+	id = 87550
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = yes
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87552
+				}
+			}
+		}
+		if = {
+			limit = {
+				FROM = {
+					is_ruler = no
+				}
+			}
+			FROM = {
+				character_event = {
+					id = 87551
+				}
+			}
+		}
+	}
+}
+
+# The landless Fluffy and his men start an adventure
+character_event = {
+	id = 87551
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = { #Tell Liege of Buster's Adventure
+			character_event = {
+				id = 875253
+				days = 1
+			}
+		}
+		
+		liege = { #Give Title and Units
+			capital_scope = {
+				FROM = {
+					owner = {
+						top_liege = {
+							ROOT = {
+								set_defacto_liege = ROOT
+								create_title = {
+									tier = DUKE
+									landless = yes
+									temporary = yes
+									culture = ROOT
+									name = "CLAIMANT_ADVENTURE"
+									holder = ROOT
+								}
+								
+								set_character_flag = horse_duchy_adventurer
+							
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREVPREVPREVPREV
+									home = PREVPREVPREVPREV
+									owner = THIS
+									match_character = PREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								war = {
+									target = PREV
+									casus_belli = horse_duchy_adventure
+									thirdparty_title = PREVPREVPREV
+									tier = DUKE
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87551: Fluffy starts his first war as a landless character!"
+	}
+}
+
+# The landed Fluffy and his men start an adventure
+character_event = {
+	id = 87552
+	desc = EVTDESC87552
+	
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	prisoner = no
+	#only_capable = yes
+	
+	trigger = {
+		is_alive = yes
+		#NOT = { trait = blinded }
+		#NOT = { trait = eunuch }
+		#NOT = { trait = infirm }
+		lower_tier_than = king
+	}
+	
+	immediate = {
+		wealth = 1000
+		
+		any_liege = {
+			character_event = {
+				id = 87553
+				days = 1
+			}
+		}
+		
+		FROM = {
+			owner = {
+				top_liege = {
+					ROOT = {
+						capital_scope = {
+							ROOT = {
+								set_character_flag = horse_duchy_adventurer
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									#leader = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+								spawn_unit = {
+									province = PREV
+									home = PREV
+									owner = THIS
+									match_character = PREVPREVPREV
+									match_mult = 0.33
+									match_min = 500
+									match_max = 10000
+									attrition = 0.25
+								}
+							}
+						}
+						
+						war = {
+							target = PREV
+							casus_belli = horse_duchy_adventure
+							thirdparty_title = PREVPREVPREV
+							tier = DUKE
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = {
+				NOT = { religion_group = christian }
+			}
+			religion = catholic
+		}
+		
+		# Create some characters
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 30
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 25
+		}
+		create_random_soldier = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = no
+			age = 22
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 16
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 17
+		}
+		create_character = {
+			random_traits = yes
+			dynasty = none
+			religion = ROOT
+			culture = ROOT
+			female = yes
+			age = 18
+		}
+		
+		log = "87552: Fluffy starts his first war as a landed character!"
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87552
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+	option = { #possessed/lunatics
+		name = EVTOPTB87552
+		
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	
+}
+
+# Notify Fluffy's old liege
+character_event = {
+	id = 87553
+	desc = EVTDESC87553
+	picture = GFX_evt_mongols
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { is_ruler = yes } # The DoW worked and the adventurer has a temporary title
+
+	}
+	
+	option = { #Normal People
+		name = EVTOPTA87553
+		trigger = {
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #possessed/lunatics
+		name = EVTOPTB87553
+		trigger = {
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+# Fluffy is successful!
+# Fired from the horse_duchy_adventure CB
+narrative_event = {
+	id = 87554
+	title = EVTNAME87554
+	desc = EVTDESC87554
+	picture = GFX_evt_mongols
+	border = GFX_event_narrative_frame_war
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	immediate = {
+		if = { #Give Titles
+			limit = {
+				OR = {
+					independent = yes
+					liege = {
+						ai = yes
+					}
+				}
+			}
+			set_defacto_liege = ROOT
+			activate_title = { title = e_fluffy_horde status = yes }
+			e_fluffy_horde = {
+				grant_title = ROOT
+			}
+			if = { #Nomadic if has Horse Lords
+				limit = {
+					has_dlc = "Horse Lords"
+				}
+				set_government_type = nomadic_government
+				population = 60000
+			}
+			if = { #Tribal if no Horse Lords
+				limit = {
+					NOT = { has_dlc = "Horse Lords" }
+				}
+				set_government_type = tribal_government
+			}			
+
+		}
+		
+		prestige = 2000
+		wealth = 5000
+		
+		capital_scope = { #Where Units Spawn
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}			
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}			
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					owner = THIS
+					troops = {
+						light_cavalry = { 3250 3250 }
+						horse_archers = { 1500 1500 }
+						knights = { 1000 1000 }
+					}
+				}
+
+			}
+		}
+		
+		log = "87554: FLuffy wins his first war!"
+	}
+	
+	option = { #Fluffy only
+		name = EVTOPTA87554
+		trigger = {
+			has_character_flag = fluffy_himself
+		}
+	}
+	option = { #Cat Cultured Only
+		name = EVTOPTB87554
+		trigger = {
+			NOT = { has_character_flag = fluffy_himself }
+			culture = monkey_culture
+		}
+	}	
+	option = { #Anyone Else
+		name = EVTOPTC87554
+		trigger = {
+			NOT = { has_character_flag = fluffy_himself }
+			NOT = {
+				culture = monkey_culture
+			}
+			NOT = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+	option = { #Lunatics/Possessed only
+		name = EVTOPTD87554
+		trigger = {
+			NOT = { has_character_flag = fluffy_himself }
+			NOT = { culture = monkey_culture }
+			OR = {
+				trait = lunatic
+				trait = possessed
+			}
+		}
+	}
+}
+
+

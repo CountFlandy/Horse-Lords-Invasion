@@ -1,0 +1,67 @@
+e_sleipnir_horde = { # Sleipnir Horde
+	color={ 106 14 200 }
+	
+	short_name = yes
+	
+	capital = 430 # Lubusz
+	culture = horse
+	
+#	tribe = yes
+	
+	landless = yes
+	
+	allow = {
+		always = no
+	}
+}
+
+e_hee_haw_horde = { # Hee-Haw Horde
+	color={ 110 15 190 }
+	
+	short_name = yes
+	
+	capital = 182 # Sevilla
+	culture = donkey_culture
+	
+#	tribe = yes
+	
+	landless = yes
+	
+	allow = {
+		always = no
+	}
+}
+
+e_buster_horde = { # Buster horde
+	color={ 120 10 190 }
+	
+	short_name = yes
+	
+	capital = 32 # Middlesex
+	culture = dog_culture
+	
+#	tribe = yes
+	
+	landless = yes
+	
+	allow = {
+		always = no
+	}
+}
+
+e_fluffy_horde = { # Fluffy horde
+	color={ 120 10 190 }
+	
+	short_name = yes
+	
+	capital = 32 # Middlesex
+	culture = cat_culture
+	
+#	tribe = yes
+	
+	landless = yes
+	
+	allow = {
+		always = no
+	}
+}

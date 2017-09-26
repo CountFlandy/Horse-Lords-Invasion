@@ -1,0 +1,13 @@
+1.00 Release Version
+
+- Added events for Sleipnir
+- Added Titles for Sleipnir
+- Added CB for Sleipnir
+- Added localisation for Sleipnir
+- Reused flag from steppes for Sleipnir horde
+
+2.00 Animal Invasion Release
+- On successful invasion the animals now get 2,000 prestige. Raised from 1,000
+- Added Dog, Cat, Monkey, Donkey, Elephant, and Tiger cultures
+- Added Event chains for Hee-Haw the Donkey (Spain, 87527-87533), Buster the Dog (England/Upper France, 87534, 87540), Fluffy the Cat (Egypt/Nubia 87541-87547)
+- Added names for Dog, Cat, 

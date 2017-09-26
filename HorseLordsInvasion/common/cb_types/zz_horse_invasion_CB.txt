@@ -1,0 +1,179 @@
+horse_duchy_adventure = { #Actually named ingame animal duchy adventure, but i was too lazy to change this part
+	name = CB_NAME_HORSE_DUCHY_ADVENTURE
+	war_name = WAR_HORSE_DUCHY_ADVENTURE
+	sprite = 9
+	truce_days = 3650
+	hostile_against_others = yes
+	check_de_jure_tier = DUKE # this scans all dejure duchies for the counties which are held by or vassals(or below) of selected character
+
+	can_use = {
+#		OR = {
+			ROOT = { has_character_flag = horse_duchy_adventurer }
+			#culture = horse
+#		}
+	}
+
+	is_valid = {
+		always = yes
+	}
+	
+	on_success = {
+		ROOT = { 
+			prestige = 500
+			hidden_tooltip = {
+				clr_character_flag = horse_duchy_adventurer
+				give_nickname = nick_the_conqueror
+			}
+		}
+		FROM = {
+			prestige = -250 
+		}
+	}
+
+	on_success_title = {
+		custom_tooltip = {
+			text = other_invasion_succ_tip
+			hidden_tooltip = {
+				ROOT = {
+					vassalize_or_take_under_title = {
+						title = PREV
+						enemy = FROM
+						type = host
+					}
+				}
+			}
+		}
+		
+		ROOT = { #Sleipnir
+			hidden_tooltip = {
+				# Special case: Sleipnir succeeds in his first conquest
+				if = {
+					limit = {
+						has_character_flag = sleipnir_himself
+					}
+					narrative_event = {
+						id = 87526
+						days = 1
+					}
+				}
+
+			}
+		}
+		ROOT = { #Hee-Haw
+			hidden_tooltip = {
+				# Special case: Hee-Haw succeeds in his first conquest
+				if = {
+					limit = {
+						has_character_flag = hee_haw_himself
+					}
+					narrative_event = {
+						id = 87533
+						days = 1
+					}
+				}
+
+			}
+		}
+		ROOT = { #Buster
+			hidden_tooltip = {
+				# Special case: Buster succeeds in his first conquest
+				if = {
+					limit = {
+						has_character_flag = buster_himself
+					}
+					narrative_event = {
+						id = 87540
+						days = 1
+					}
+				}
+
+			}
+		}
+		ROOT = { #Fluffy
+			hidden_tooltip = {
+				# Special case: Fluffy succeeds in his first conquest
+				if = {
+					limit = {
+						has_character_flag = fluffy_himself
+					}
+					narrative_event = {
+						id = 87547
+						days = 1
+					}
+				}
+			}
+		}
+	}
+
+	on_fail = {
+		FROM = {
+			prestige = 100
+			hidden_tooltip = {
+				opinion = {
+					modifier = opinion_rebel_traitor 
+					who = ROOT
+					months = 1200
+				}
+			}
+		}
+		ROOT = {
+			clear_wealth = yes
+			imprison = FROM 
+			hidden_tooltip = {
+				disband_event_forces = yes
+				clr_character_flag = horse_duchy_adventurer
+			}
+		}
+	
+		ROOT = { prestige = -100 }
+	}
+
+	on_reverse_demand = {
+		ROOT = {
+			transfer_scaled_wealth = {
+				to = FROM
+				value = 4.0
+			}
+		}
+		
+		FROM = {
+			prestige = 200
+		}
+		
+		ROOT = {
+			clear_wealth = yes
+			imprison = FROM
+			prestige = -200
+			hidden_tooltip = {
+				disband_event_forces = yes
+				clr_character_flag = horse_duchy_adventurer
+			}
+		}
+	}
+	
+	on_attacker_leader_death = {
+		ROOT = {
+			hidden_tooltip = {
+				disband_event_forces = yes
+				clr_character_flag = horse_duchy_adventurer
+			}
+		}
+		end_war = invalid
+	}
+
+	attacker_ai_victory_worth = {
+		factor = -1 # always accept
+	}
+	
+	attacker_ai_defeat_worth = {
+		factor = 100
+	}
+
+	defender_ai_victory_worth = {
+		factor = -1 # always accept
+	}
+	
+	defender_ai_defeat_worth = {
+		factor = 100
+	}
+}

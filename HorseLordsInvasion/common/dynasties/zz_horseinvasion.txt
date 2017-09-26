@@ -1,0 +1,5 @@
+485246 = {
+	name="Butter-Licker" 
+	culture="horse"
+	religion="catholic"
+}
